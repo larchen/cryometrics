@@ -58,7 +58,8 @@ def watch(
     config: Path = None,
     fridge: str = None,
     timestamp_col: str = None,
-    start: Optional[int] = None,
+    start: Optional[int] = -1,
+    sleep: int = 10
 ):  
     if config is None:
         typer.echo(ctx.get_help())
@@ -86,7 +87,7 @@ def watch(
 
     while True:
         log.to_influx(None, **config)
-        time.sleep(5)
+        time.sleep(sleep)
 
 @ox_app.command()
 def columns(file: Path):
