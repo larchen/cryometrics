@@ -180,6 +180,7 @@ class OxfordLog:
 
         if outfile is None:
             sys.stdout.writelines(m.to_line(end='\n') for m in mlist)
+            sys.stdout.flush()
         else:
             with open(outfile, 'a') as f:
                 f.writelines(m.to_line(end='\n') for m in mlist)
