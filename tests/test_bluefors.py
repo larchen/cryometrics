@@ -1,5 +1,5 @@
-from procfridge.metric import Metric
-from procfridge.bluefors import parse_pressure, parse_status
+from cryometrics.metric import Metric
+from cryometrics.bluefors import parse_pressure, parse_status
 
 class TestBlizzard:
     def test_pressure(self):

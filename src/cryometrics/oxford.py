@@ -6,7 +6,7 @@ import numpy as np
 
 from attr import define, field
 
-from procfridge.metric import Metric
+from cryometrics.metric import Metric
 
 def split_blocks(bs: bytes, block_sizes: tuple[int, ...]) -> tuple[bytes, ...]:
     cum_sizes = np.cumsum((0, *block_sizes))

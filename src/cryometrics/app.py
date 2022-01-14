@@ -7,9 +7,9 @@ import yaml
 
 from loguru import logger
 
-from procfridge import bluefors
-from procfridge.oxford import OxfordLog
-from procfridge.metric import Metric
+from cryometrics import bluefors
+from cryometrics.oxford import OxfordLog
+from cryometrics.metric import Metric
 
 logger.remove()
 logger.add(sys.stderr)

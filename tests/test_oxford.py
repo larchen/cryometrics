@@ -1,14 +1,18 @@
+from distutils.log import Log
 from pathlib import Path
 
 import pytest
 
-from procfridge.oxford import OxfordLog
+from cryometrics.oxford import OxfordLog
 
 LOGDIR = Path(__file__).parent / 'logs'
 
 class TestLog:
     def test_from_file(self):
-        log = OxfordLog.from_file(filename='F:\\Fridges\\Oxicold\\log 220110 170517.vcl')
+        logdir = LOGDIR / 'oxicold'
+        filename = next(logdir.iterdir())
+
+        log = OxfordLog.from_file(filename)
         
         assert isinstance(log, OxfordLog)
 

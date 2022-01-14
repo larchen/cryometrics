@@ -1,6 +1,6 @@
 import re
 
-from procfridge.metric import Metric
+from cryometrics.metric import Metric
 
 SCI = r'((?:\+|-)?\d+.\d+E[+-]\d+)'
 PRESSURE_REGEX = re.compile(rf'(CH\d).*?{SCI}')

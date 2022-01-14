@@ -1,6 +1,6 @@
 import pytest
 
-from procfridge.metric import Metric
+from cryometrics.metric import Metric
 
 class TestMetric:
     CASES = [
