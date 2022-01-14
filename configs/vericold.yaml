@@ -1,0 +1,73 @@
+timestamp_col: Time(secs)
+fridge: vericold
+metrics:
+  PressureM1Condense(Bar):
+    field: pressure
+    tags:
+      channel: M1
+      location: condense
+    scaling: 1e3
+  PressureM3Tank(Bar):
+    field: pressure
+    tags:
+      channel: M3
+      location: tank
+    scaling: 1e3
+  PressureM21Still(mBar):
+    field: pressure
+    tags:
+      channel: M21
+      location: still
+  PressureM22Forepump(mBar):
+    field: pressure
+    tags:
+      channel: M22
+      location: forepump
+  PressureMDewar(mBar):
+    field: pressure
+    tags:
+      location: dewar
+  PressureFPSafety(Bar):
+    field: pressure
+    tags:
+      location: forepump-safety
+  4K PT T(K):
+    field: temperature
+    tags:
+      location: 4K-PT
+  4K plate T(K):
+    field: temperature
+    tags:
+      location: 4K-plate
+  Still T(K):
+    field: temperature
+    tags:
+      location: still
+  MC plate cernox T(K):
+    field: temperature
+    tags:
+      location: MXC-cernox
+  MC plate RuOx T(K):
+    field: temperature
+    tags:
+      location: MXC-ruox
+  70K PT T(K):
+    field: temperature
+    tags:
+      location: 70K-PT
+  70K plate T(K):
+    field: temperature
+    tags:
+      location: 70K-plate
+  Still heater (W):
+    field: heater_power
+    tags:
+      location: still
+  chamber heater (W):
+    field: heater_power
+    tags:
+      location: chamber
+  IVC sorb heater (W):
+    field: heater_power
+    tags:
+      location: IVC

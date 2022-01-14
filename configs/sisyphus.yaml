@@ -1,0 +1,91 @@
+timestamp_col: Time(secs)
+fridge: sisyphus
+metrics:
+  P2 Condense (Bar):
+    field: pressure
+    tags:
+      channel: P2
+      location: condense
+    scaling: 1e3
+  P1 Tank (Bar):
+    field: pressure
+    tags:
+      channel: P1
+      location: tank
+    scaling: 1e3
+  P5 ForepumpBack (Bar):
+    field: pressure
+    tags:
+      channel: P5
+      location: forepump
+    scaling: 1e3
+  P3 Still (mbar):
+    field: pressure
+    tags:
+      channel: P3
+      location: still
+  P4 TurboBack (mbar):
+    field: pressure
+    tags:
+      channel: P4
+      location: turbo-back
+  Dewar (mbar):
+    field: pressure
+    tags:
+      location: dewar
+  Input Water Temp:
+    field: cpatempwi
+  Output Water Temp:
+    field: cpatempwo
+  Helium Temp:
+    field: cpatemph
+  Oil Temp:
+    field: cpatempo
+  Motor Current:
+    field: cpacurrent
+  PT1 Plate T(K):
+    field: temperature
+    tags:
+      location: PT1-plate
+  PT2 Plate T(K):
+    field: temperature
+    tags:
+      location: PT2-plate
+  Still T(K):
+    field: temperature
+    tags:
+      location: still
+  100mK Plate T(K):
+    field: temperature
+    tags:
+      location: 100mK-plate
+  MC RuO2 T(K):
+    field: temperature
+    tags:
+      location: MXC-ruox
+  MC cernox T(K):
+    field: temperature
+    tags:
+      location: MXC-cernox
+  Still heater (W):
+    field: heater_power
+    tags:
+      location: still
+  chamber heater (W):
+    field: heater_power 
+    tags:
+      location: chamber
+  IVC sorb heater (W):
+    field: heater_power
+    tags:
+      location: IVC
+  turbo current(A):
+    field: turbo_current
+  turbo power(W):
+    field: turbo_power
+  turbo speed(Hz):
+    field: turbo_speed
+  turbo motor(C):
+    field: turbo_mtemp
+  turbo bottom(C):
+    field: turbo_btemp
