@@ -40,9 +40,9 @@ def parse_status(metric: Metric) -> list[Metric]:
 
         metrics.append(
             Metric(
-                measurement=f'{metric.measurement}_{key}',
+                measurement=f'{metric.measurement}',
                 tags=metric.tags.copy(),
-                fields=dict(status=s),
+                fields={key: s},
                 timestamp=metric.timestamp
             )
         )
