@@ -71,7 +71,7 @@ class OxfordLog:
         log.filepos = fpos
 
         return log
-        
+
     def read_lines(self, start=None, stop=None) -> np.ndarray:
         """Reads the specified log lines from the file."""
         if start is None:

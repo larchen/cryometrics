@@ -10,6 +10,7 @@ from loguru import logger
 from cryometrics import bluefors
 from cryometrics.oxford import OxfordLog
 from cryometrics.metric import Metric
+from cryometrics.database import send_http_data
 
 logger.remove()
 logger.add(sys.stderr)
@@ -82,12 +83,81 @@ def watch(
 
     logger.info(f'Watching log file: {path}')
 
-    
     log.to_influx(None, start=start, **config)
 
     while True:
         log.to_influx(None, **config)
         time.sleep(sleep)
+
+@ox_app.command()
+def backfill(
+    ctx: typer.Context,
+    path: Path,
+    config: Path = None,
+    fridge: str = None,
+    timestamp_col: str = None,
+    start: Optional[int] = None,
+    stop: Optional[int] = None,
+    max_lines: int = 10000,
+    endpoint: Optional[str] = None,
+    username: Optional[str] = None,
+    password: Optional[str] = None,
+):  
+    if config is None:
+        typer.echo(ctx.get_help())
+        typer.echo('\nError: \'--config\' is required for influx format.')
+        raise typer.Exit(code=1)
+    
+    with open(config, 'r') as f:
+        config = yaml.load(f, Loader=yaml.CSafeLoader)
+    
+    if fridge:
+        config.update(fridge=fridge)
+    if timestamp_col:
+        config.update(timestamp_col=timestamp_col)
+
+    if path.is_file():
+        log = OxfordLog.from_file(path)
+    else:
+        typer.echo('Error: specified \'--path\' must be a log file, not a directory.')
+        raise typer.Exit(code=1)
+
+    if endpoint:
+        success = send_http_data(
+            endpoint, '', username=username, password=password
+        )
+        status = 'Successfully connected' if success else 'Failed to connect'
+        logger.info(f'{status} to database at {endpoint}')
+
+        if not success:
+            raise typer.Exit(code=1)
+    else:
+        typer.echo('No endpoint specified, writing to stdout:')
+
+    data = log.read_lines(start=start, stop=stop)
+
+    typer.echo(f'Parsing metrics from {path}...')
+    all_metrics = log.to_metrics(data, **config)
+
+    with typer.progressbar(
+        range(0, len(all_metrics), max_lines), label=f'Sending {len(all_metrics)} metrics'
+    ) as progress:
+        for idx in progress:
+            to_send = '\n'.join(
+                m.to_line() for m in all_metrics[idx:idx + max_lines]
+            )
+            if endpoint:
+                success = send_http_data(
+                    endpoint,
+                    to_send,
+                    username=username,
+                    password=password
+                )
+                if not success:
+                    typer.echo('Failed to send data!')
+                    raise typer.Exit(code=1)
+            else:
+                typer.echo(to_send)
 
 @ox_app.command()
 def columns(file: Path):
