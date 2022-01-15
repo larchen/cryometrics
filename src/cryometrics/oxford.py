@@ -1,6 +1,7 @@
 import re, sys
 from typing import Optional
 from functools import reduce
+from pathlib import Path
 
 import numpy as np
 
@@ -161,6 +162,8 @@ class OxfordLog:
                     fields={metric_data['field']: datapoint[col]*scaling},
                     timestamp=int(timestamp*1e9)
                 )
+
+                m.tags.update(logfile=Path(self.filename).name)
 
                 out.append(m)
 
