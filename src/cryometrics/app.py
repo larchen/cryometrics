@@ -102,6 +102,8 @@ def backfill(
     endpoint: Optional[str] = None,
     username: Optional[str] = None,
     password: Optional[str] = None,
+    num_tries: int = 5,
+    backoff: int = 1 
 ):  
     if config is None:
         typer.echo(ctx.get_help())
@@ -147,13 +149,17 @@ def backfill(
                 m.to_line() for m in all_metrics[idx:idx + max_lines]
             )
             if endpoint:
-                success = send_http_data(
-                    endpoint,
-                    to_send,
-                    username=username,
-                    password=password
-                )
-                if not success:
+                for t in range(num_tries):
+                    success = send_http_data(
+                        endpoint,
+                        to_send,
+                        username=username,
+                        password=password
+                    )
+                    if success:
+                        break
+                    time.sleep(backoff ** t)
+                else:
                     typer.echo('Failed to send data!')
                     raise typer.Exit(code=1)
             else:
