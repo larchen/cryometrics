@@ -163,8 +163,6 @@ class OxfordLog:
                     timestamp=int(timestamp*1e9)
                 )
 
-                m.tags.update(logfile=Path(self.filename).name)
-
                 out.append(m)
 
         return out
