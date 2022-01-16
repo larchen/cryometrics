@@ -125,6 +125,12 @@ def backfill(
         raise typer.Exit(code=1)
 
     if endpoint:
+        if username is None:
+            username = typer.prompt('username')
+
+        if password is None:
+            password = typer.prompt('password', hide_input=True)
+
         success = send_http_data(
             endpoint, '', username=username, password=password
         )
