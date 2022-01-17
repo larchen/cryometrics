@@ -21,14 +21,17 @@ metrics:
   Still (mbar):
     field: pressure
     tags:
+      channel: M21
       location: still
   Forepump (mbar):
     field: pressure
     tags:
+      channel: M22
       location: forepump
   Dewar (mbar):
     field: pressure
     tags:
+      channel: MV
       location: dewar
   Input Water Temp:
     field: cpatempwi

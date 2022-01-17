@@ -154,7 +154,7 @@ class OxfordLog:
             timestamp = datapoint[timestamp_col]
 
             for col, metric_data in metrics.items():
-                scaling = float(metric_data.pop('scaling', 1))
+                scaling = float(metric_data.get('scaling', 1))
 
                 m = Metric(
                     measurement=fridge,
