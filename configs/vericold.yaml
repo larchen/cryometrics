@@ -26,7 +26,8 @@ metrics:
   PressureMDewar(mBar):
     field: pressure
     tags:
-      location: dewar
+      channel: MV
+      location: ovc
   PressureFPSafety(Bar):
     field: pressure
     tags:

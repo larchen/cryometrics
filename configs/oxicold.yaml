@@ -32,7 +32,7 @@ metrics:
     field: pressure
     tags:
       channel: MV
-      location: dewar
+      location: ovc
   Input Water Temp:
     field: cpatempwi
   Output Water Temp:
