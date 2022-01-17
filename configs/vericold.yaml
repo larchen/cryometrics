@@ -32,6 +32,7 @@ metrics:
     field: pressure
     tags:
       location: forepump-safety
+    scaling: 1e3
   4K PT T(K):
     field: temperature
     tags:
