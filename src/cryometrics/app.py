@@ -92,7 +92,7 @@ def watch(
 @ox_app.command()
 def backfill(
     ctx: typer.Context,
-    path: Path,
+    path: Path = typer.Option(..., exists=True),
     config: Path = None,
     fridge: str = None,
     timestamp_col: str = None,
