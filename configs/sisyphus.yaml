@@ -32,7 +32,7 @@ metrics:
   Dewar (mbar):
     field: pressure
     tags:
-      location: dewar
+      location: ovc
   Input Water Temp:
     field: cpatempwi
   Output Water Temp:
