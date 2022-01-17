@@ -16,6 +16,7 @@ metrics:
   P3 Still (mbar):
     field: pressure
     tags:
+      channel: P3
       location: still
   P4 TurboBack (mbar):
     field: pressure
