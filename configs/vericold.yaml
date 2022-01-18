@@ -73,3 +73,7 @@ metrics:
     field: heater_power
     tags:
       location: IVC
+  Mix heater (W):
+    field: heater_power
+    tags:
+      location: mix
