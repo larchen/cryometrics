@@ -7,7 +7,19 @@ metrics:
       channel: M1
       location: condense
     scaling: 1e3
+  PressureM1(Bar):
+    field: pressure
+    tags:
+      channel: M1
+      location: condense
+    scaling: 1e3
   PressureM3Tank(Bar):
+    field: pressure
+    tags:
+      channel: M3
+      location: tank
+    scaling: 1e3
+  PressureM3(Bar):
     field: pressure
     tags:
       channel: M3
@@ -18,7 +30,17 @@ metrics:
     tags:
       channel: M21
       location: still
+  PressureM21(mBar):
+    field: pressure
+    tags:
+      channel: M21
+      location: still
   PressureM22Forepump(mBar):
+    field: pressure
+    tags:
+      channel: M22
+      location: forepump
+  PressureM22(mBar):
     field: pressure
     tags:
       channel: M22
@@ -28,7 +50,17 @@ metrics:
     tags:
       channel: MV
       location: ovc
+  PressureMV(mBar):
+    field: pressure
+    tags:
+      channel: MV
+      location: ovc
   PressureFPSafety(Bar):
+    field: pressure
+    tags:
+      location: forepump-safety
+    scaling: 1e3
+  PressureFP(Bar):
     field: pressure
     tags:
       location: forepump-safety
