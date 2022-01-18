@@ -156,10 +156,15 @@ class OxfordLog:
             for col, metric_data in metrics.items():
                 scaling = float(metric_data.get('scaling', 1))
 
+                value = datapoint.get(col)
+
+                if value is None:
+                    continue
+
                 m = Metric(
                     measurement=fridge,
                     tags=metric_data.get('tags', {}),
-                    fields={metric_data['field']: datapoint[col]*scaling},
+                    fields={metric_data['field']: value*scaling},
                     timestamp=int(timestamp*1e9)
                 )
 

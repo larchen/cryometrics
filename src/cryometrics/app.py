@@ -172,13 +172,26 @@ def backfill(
                 typer.echo(to_send)
 
 @ox_app.command()
-def columns(file: Path):
-    
-    log = OxfordLog.from_file(file)
+def columns(path: Path):
 
-    typer.echo(f'Columns for file {file}:')
-    for col in log.metadata.columns:
-        typer.echo(col)
+    if path.is_file():
+        log = OxfordLog.from_file(path)
+
+        typer.echo(f'Columns for file {path}:')
+        for col in log.metadata.columns:
+            typer.echo(col)
+
+    elif path.is_dir():
+        typer.echo(f'Collecting all columns from {path}.')
+        all_columns = set()
+
+        with typer.progressbar(path.iterdir()) as files:
+            for file in files:
+                log = OxfordLog.from_file(file)
+                all_columns.update(log.metadata.columns)
+        
+        for col in all_columns:
+            typer.echo(col)
 
 @ox_app.command()
 def convert(
