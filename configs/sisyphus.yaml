@@ -51,6 +51,10 @@ metrics:
     field: temperature
     tags:
       location: PT2-plate
+  4K Plate T(K):
+    field: temperature
+    tags:
+      location: 4K-plate
   Still T(K):
     field: temperature
     tags:
@@ -64,6 +68,10 @@ metrics:
     tags:
       location: MXC-ruox
   MC cernox T(K):
+    field: temperature
+    tags:
+      location: MXC-cernox
+  MC Cernox T(K):
     field: temperature
     tags:
       location: MXC-cernox
