@@ -185,7 +185,7 @@ def columns(path: Path):
         typer.echo(f'Collecting all columns from {path}.')
         all_columns = set()
 
-        with typer.progressbar(path.iterdir()) as files:
+        with typer.progressbar(path.glob('*.vcl')) as files:
             for file in files:
                 log = OxfordLog.from_file(file)
                 all_columns.update(log.metadata.columns)
