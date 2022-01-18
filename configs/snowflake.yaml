@@ -79,6 +79,8 @@ metrics:
     field: heater_power
     tags:
       location: IVC
+  turbo power(W):
+    field: turbo_power
   turbo current(A):
     field: turbo_current
   turbo speed(Hz):
